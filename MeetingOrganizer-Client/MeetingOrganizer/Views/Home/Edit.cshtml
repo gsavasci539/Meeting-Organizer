@@ -1,0 +1,104 @@
+﻿@model MeetingOrganizer.Models.Meeting
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Toplantı Güncelleme </h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit" id="editForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <input asp-for="id" class="form-control" disabled />
+                            <span asp-validation-for="id" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Konu</th>
+                        <td>
+                            <input asp-for="subject" class="form-control" />
+                            <span asp-validation-for="subject" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Toplantı Başlangıç Tarihi</th>
+                        <td>
+                            <input asp-for="startDate" class="form-control" type="date" />
+                            <span asp-validation-for="startDate" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Toplantı Başlangıç Saati</th>
+                        <td>
+                            <input asp-for="startTime" class="form-control" type="time" />
+                            <span asp-validation-for="startTime" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Toplantı Bitiş Saati</th>
+                        <td>
+                            <input asp-for="endTime" class="form-control" type="time" />
+                            <span asp-validation-for="endTime" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Katılımcılar</th>
+                        <td>
+                            <input asp-for="participants" class="form-control" />
+                            <span asp-validation-for="participants" class="text-danger"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group text-center">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-primary">Listeye Geri Dön</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("editForm").addEventListener("submit", function (event) {
+            // Boş giriş kontrolü
+            var inputs = document.querySelectorAll("input[type='text'], input[type='date'], input[type='time']");
+            var isEmpty = false;
+            inputs.forEach(function (input) {
+                if (!input.value.trim()) {
+                    isEmpty = true;
+                }
+            });
+
+            // Tarih ve saat formatı uyumsuzluk kontrolü
+            var startDateInput = document.getElementById("startDate");
+            var startTimeInput = document.getElementById("startTime");
+            var endTimeInput = document.getElementById("endTime");
+
+            var startDate = new Date(startDateInput.value);
+            var startTime = new Date("1970-01-01T" + startTimeInput.value);
+            var endTime = new Date("1970-01-01T" + endTimeInput.value);
+
+            if (isNaN(startDate.getTime()) || isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+                alert("Lütfen geçerli bir tarih ve saat girin.");
+                event.preventDefault();
+            } else if (startTime >= endTime) {
+                alert("Toplantı başlangıç saati, bitiş saatinden sonra olamaz.");
+                event.preventDefault();
+            } else if (isEmpty) {
+                alert("Lütfen tüm alanları doldurun.");
+                event.preventDefault();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,40 @@
+﻿@model MeetingOrganizer.Models.Meeting
+
+@{
+    ViewData["Title"] = "Toplantı Detayları";
+}
+
+<div>
+    <h4>Toplantı Detayları</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">ID</th>
+                <td>@Html.DisplayFor(model => model.id)</td>
+            </tr>
+            <tr>
+                <th scope="row">Konu</th>
+                <td>@Html.DisplayFor(model => model.subject)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Tarihi</th>
+                <td>@Html.DisplayFor(model => model.startDate)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Başlangıç Saati</th>
+                <td>@Html.DisplayFor(model => model.startTime)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Bitiş Saati</th>
+                <td>@Html.DisplayFor(model => model.endTime)</td>
+            </tr>
+            <tr>
+                <th scope="row">Katılımcılar</th>
+                <td>@Html.DisplayFor(model => model.participants)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Listeye Geri Dön</a>
+</div>

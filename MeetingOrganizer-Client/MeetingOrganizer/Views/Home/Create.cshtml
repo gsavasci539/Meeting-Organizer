@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Meeting Create";
+}
+
+<form class="row g-6" method="post">
+    <div class="col-md-12">
+        <label for="inputEmail4" class="form-label">Konu</label>
+        <input type="text" class="form-control" name="subject">
+    </div>
+    <div class="col-md-12">
+        <label for="inputPassword4" class="form-label">Toplantı Tarihi</label>
+        <input type="date" class="form-control" name="startDate">
+    </div>
+
+    <div class="col-md-6 ">
+        <label for="inputPassword4" class="form-label">Toplantı Başlangıç Saati</label>
+        <input type="time" class="form-control" name="startTime">
+    </div>
+    <div class="col-md-6 ">
+        <label for="inputPassword4" class="form-label">Toplantı Bitiş Saati</label>
+        <input type="time" class="form-control" name="endTime">
+    </div>
+    <div class="col-md-12">
+        <label for="inputPassword4" class="form-label">Katılımcılar</label>
+        <input type="text" class="form-control" name="participants">
+    </div>
+
+    <div class="col-12 mt-2">
+        <button type="submit" class="btn btn-primary" asp-action="Create">Toplantı Ekle</button>
+    </div>
+</form>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const inputs = document.querySelectorAll('input[type="text"], input[type="date"], input[type="time"]');
+        let isEmpty = false;
+
+        inputs.forEach(function (input) {
+            if (!input.value.trim()) {
+                isEmpty = true;
+            }
+        });
+
+        if (isEmpty) {
+            event.preventDefault();
+            alert('Lütfen tüm alanları doldurunuz.');
+        }
+    });
+</script>

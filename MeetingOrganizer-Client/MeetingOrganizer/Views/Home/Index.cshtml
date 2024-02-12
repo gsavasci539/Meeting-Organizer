@@ -1,0 +1,134 @@
+﻿@model IEnumerable<MeetingOrganizer.Models.Meeting>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 style="text-align: center;">Planlanmış Toplantılar</h1>
+
+<div style="text-align: right;">
+    <input type="text" id="filterInput" placeholder="Ara...">
+</div>
+
+<table class="table" id="meetingTable">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Konu
+            </th>
+            <th>
+                Başlangıç Tarihi
+            </th>
+            <th>
+                Başlangıç Saati
+            </th>
+            <th>
+                Bitiş Saati
+            </th>
+            <th>
+                Katılımcılar
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.endTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.participants)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { Id = item.id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Detaylar", "Details", new { Id = item.id }, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Sil", "Delete", new { Id = item.id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="pagination-container" style="text-align: center; display: flex; justify-content: center;">
+    <div id="pagination">
+        <ul class="pagination">
+            <li class="page-item" id="previous"><a class="page-link" href="#">Previous</a></li>
+        </ul>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var rows = $('#meetingTable tbody tr');
+            var rowsPerPage = 10;
+            var totalPages = Math.ceil(rows.length / rowsPerPage);
+            var currentPage = 1;
+
+            // Initialize pagination
+            renderPagination();
+
+            // Render pagination links
+            function renderPagination() {
+                var paginationList = $('#pagination ul');
+                paginationList.empty();
+                paginationList.append('<li class="page-item" id="previous"><a class="page-link" href="#">Geri</a></li>');
+                for (var i = 1; i <= totalPages; i++) {
+                    paginationList.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+                }
+                paginationList.append('<li class="page-item" id="next"><a class="page-link" href="#">İleri</a></li>');
+                setActivePage(currentPage);
+            }
+
+            // Set active page
+            function setActivePage(page) {
+                $('#pagination ul li').removeClass('active');
+                $('#pagination ul li').eq(page).addClass('active');
+            }
+
+            // Handle pagination click
+            $('#pagination').on('click', 'li.page-item', function (e) {
+                e.preventDefault();
+                var pageNum = $(this).text();
+                if (pageNum === 'Previous') {
+                    if (currentPage > 1) {
+                        currentPage--;
+                    }
+                } else if (pageNum === 'Next') {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                    }
+                } else {
+                    currentPage = parseInt(pageNum);
+                }
+                renderPage();
+            });
+
+            // Render page based on current page
+            function renderPage() {
+                var startIndex = (currentPage - 1) * rowsPerPage;
+                var endIndex = startIndex + rowsPerPage;
+                rows.hide().slice(startIndex, endIndex).show();
+                setActivePage(currentPage);
+            }
+        });
+    </script>
+}

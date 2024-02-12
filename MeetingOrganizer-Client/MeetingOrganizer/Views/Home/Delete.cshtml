@@ -1,0 +1,53 @@
+﻿@model MeetingOrganizer.Models.Meeting
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <h4>Toplantı Bilgisi</h4>
+    <hr />
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">ID</th>
+                <td>@Html.DisplayFor(model => model.id)</td>
+            </tr>
+            <tr>
+                <th scope="row">Konu</th>
+                <td>@Html.DisplayFor(model => model.subject)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Başlangıç Tarihi</th>
+                <td>@Html.DisplayFor(model => model.startDate)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Başlangıç Saati</th>
+                <td>@Html.DisplayFor(model => model.startTime)</td>
+            </tr>
+            <tr>
+                <th scope="row">Toplantı Bitiş Saati</th>
+                <td>@Html.DisplayFor(model => model.endTime)</td>
+            </tr>
+            <tr>
+                <th scope="row">Katılımcılar</th>
+                <td>@Html.DisplayFor(model => model.participants)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Delete" id="deleteForm" class="text-center">
+        <input type="submit" value="Toplantıyı Sil" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Listeye Geri Dön</a>
+    </form>
+
+</div>
+
+<script>
+    document.getElementById("deleteForm").addEventListener("submit", function (event) {
+        var confirmation = confirm("Bunu silmek istediğinizden emin misiniz?");
+        if (!confirmation) {
+            event.preventDefault();
+        }
+    });
+</script>
