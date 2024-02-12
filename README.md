@@ -3,6 +3,7 @@ Welcome to the Meeting Organizer, a simple web application designed to help you 
 
 
 Features
+
 CRUD Operations: Perform create, read, update, and delete operations on meetings effortlessly.
 
 Meeting Details: Store comprehensive meeting information including subject, start date, start time, end time, and participants.
@@ -13,6 +14,7 @@ RESTful API: Provides a set of RESTful API endpoints for seamless interaction wi
 
 
 Technologies Used
+
 
 Python: A versatile and dynamic programming language.
 
