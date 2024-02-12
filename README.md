@@ -1,21 +1,6 @@
 Meeting Organizer Web Application
 Welcome to the Meeting Organizer, a simple web application designed to help you efficiently organize your meetings. This application is built using Flask, a lightweight and powerful web framework for Python.
 
-Table of Contents
-
-Features
-
-Technologies Used
-
-Installation
-
-Usage
-
-API Endpoints
-
-Contributing
-
-License
 
 Features
 CRUD Operations: Perform create, read, update, and delete operations on meetings effortlessly.
@@ -25,6 +10,7 @@ Meeting Details: Store comprehensive meeting information including subject, star
 Relational Database: Utilizes Microsoft SQL Server (MSSQL) to persist meeting data, ensuring robustness and scalability.
 
 RESTful API: Provides a set of RESTful API endpoints for seamless interaction with meetings programmatically.
+
 
 Technologies Used
 
