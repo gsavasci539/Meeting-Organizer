@@ -4,24 +4,24 @@
 
 <form class="row g-6" method="post">
     <div class="col-md-12">
-        <label for="inputEmail4" class="form-label">Konu</label>
+        <label  class="form-label">Konu</label>
         <input type="text" class="form-control" name="subject">
     </div>
     <div class="col-md-12">
-        <label for="inputPassword4" class="form-label">Toplantı Tarihi</label>
+        <label  class="form-label">Toplantı Tarihi</label>
         <input type="date" class="form-control" name="startDate">
     </div>
 
     <div class="col-md-6 ">
-        <label for="inputPassword4" class="form-label">Toplantı Başlangıç Saati</label>
+        <label  class="form-label">Toplantı Başlangıç Saati</label>
         <input type="time" class="form-control" name="startTime">
     </div>
     <div class="col-md-6 ">
-        <label for="inputPassword4" class="form-label">Toplantı Bitiş Saati</label>
+        <label  class="form-label">Toplantı Bitiş Saati</label>
         <input type="time" class="form-control" name="endTime">
     </div>
     <div class="col-md-12">
-        <label for="inputPassword4" class="form-label">Katılımcılar</label>
+        <label  class="form-label">Katılımcılar</label>
         <input type="text" class="form-control" name="participants">
     </div>
 
@@ -41,9 +41,39 @@
             }
         });
 
+       
+        const startDate = new Date(document.querySelector('input[name="startDate"]').value);
+        const startTime = document.querySelector('input[name="startTime"]').value;
+        const endTime = document.querySelector('input[name="endTime"]').value;
+
+       
+        if (startDate.toString() === 'Invalid Date') {
+            isEmpty = true;
+            alert('Geçerli bir tarih seçiniz.');
+        }
+
+        if (!startTime) {
+            isEmpty = true;
+            alert('Toplantı başlangıç saati giriniz.');
+        }
+
+        if (!endTime) {
+            isEmpty = true;
+            alert('Toplantı bitiş saati giriniz.');
+        }
+
+      
+        const startDateTime = new Date(`${startDate.toDateString()} ${startTime}`);
+        const endDateTime = new Date(`${startDate.toDateString()} ${endTime}`);
+
+        if (startDateTime >= endDateTime) {
+            isEmpty = true;
+            alert('Toplantı başlangıç saati, bitiş saatinden önce olmalıdır.');
+        }
+
         if (isEmpty) {
             event.preventDefault();
-            alert('Lütfen tüm alanları doldurunuz.');
+            alert('Lütfen tüm alanları doldurunuz ve geçerli bir tarih ve saat giriniz.');
         }
     });
 </script>

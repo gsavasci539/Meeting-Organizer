@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s4I8QewBqAhJfqRs8ftAtQICZEo7tuiIojaTs211g0VsDaAQQsXjTecGqqnzb+dJHB5owm+D+vrYa2kw/JlTng==",
+  "dgSpecHash": "E7tQd15eG1iG2ZH9vH0uPY+lsAsRsJw/OnHD9ODHXe3F9e97ZrGFgQHphaEzSlSN2juFjy/+SChyPJVeyTnFdQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Documents\\GitHub\\Meeting-Organizer\\MeetingOrganizer-Client\\MeetingOrganizer\\MeetingOrganizer.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\MeetingOrganizer-Client\\MeetingOrganizer\\MeetingOrganizer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",

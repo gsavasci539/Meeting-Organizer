@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeetingOrganizer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd0c80eb2a0f8eede1abc9aa04c6c5cb81a5857b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeetingOrganizer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeetingOrganizer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
